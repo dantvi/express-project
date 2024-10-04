@@ -19,6 +19,14 @@ const friends = [
   }
 ];
 
+// Our Own Logging Middleware
+app.use((req, res, next) => {
+  const start = Date.now();
+  next();
+  const deltaTime = Date.now() - start;
+  console.log(`method: ${req.method}, url: ${req.url}, request time: ${deltaTime}ms`);
+});
+
 app.get('/friends', (req, res) => {
   res.json(friends);
 });
